@@ -5,7 +5,12 @@ use PhpParser\NodeTraverser;
 
 function ASTLoad($file_name, $nodeVisitor=NULL){
     if(PHP_VERSION >= "7.2"){
-        $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        if (PHP_VERSION >= "8.4") {
+            $parser = (new ParserFactory())->createForNewestSupportedVersion();
+        }
+        else {
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        }
     }
     else{
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);   
@@ -40,7 +45,12 @@ function ASTLoad($file_name, $nodeVisitor=NULL){
 
 function ASTLoadByCode($code, $nodeVisitor=NULL){
     if(PHP_VERSION >= "7.2"){
-        $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        if (PHP_VERSION >= "8.4") {
+            $parser = (new ParserFactory())->createForNewestSupportedVersion();
+        }
+        else {
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        }
     }
     else{
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);   
@@ -66,7 +76,12 @@ function ASTLoadByCode($code, $nodeVisitor=NULL){
 
 function IncLoad($file_name, $nodeVisitor=NULL){
     if(PHP_VERSION >= "7.2"){
-        $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        if (PHP_VERSION >= "8.4") {
+            $parser = (new ParserFactory())->createForNewestSupportedVersion();
+        }
+        else {
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        }
     }
     else{
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);   
@@ -95,7 +110,12 @@ function IncLoad($file_name, $nodeVisitor=NULL){
 
 function ConstraintLoad($code, $nodeVisitor=NULL){
     if(PHP_VERSION >= "7.2"){
-        $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        if (PHP_VERSION >= "8.4") {
+            $parser = (new ParserFactory())->createForNewestSupportedVersion();
+        }
+        else {
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        }
     }
     else{
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);   
@@ -123,7 +143,12 @@ function ConstraintLoad($code, $nodeVisitor=NULL){
 
 function InstrumentationByAST($ast, $nodeVisitor=NULL){
     if(PHP_VERSION >= "7.2"){
-        $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        if (PHP_VERSION >= "8.4") {
+            $parser = (new ParserFactory())->createForNewestSupportedVersion();
+        }
+        else {
+            $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+        }
     }
     else{
         $parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);   

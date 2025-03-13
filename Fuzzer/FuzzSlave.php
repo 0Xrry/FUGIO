@@ -1,6 +1,11 @@
 <?php
 if (PHP_VERSION >= "7.2") {
-  require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
+  if (PHP_VERSION >= "8.4") {
+    require_once __DIR__ . '/../Lib/rabbitmq_php8/vendor/autoload.php';  
+  }
+  else {
+    require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
+  }
 }
 else {
   require_once __DIR__ . '/../Lib/rabbitmq_php/vendor/autoload.php';
@@ -9,7 +14,12 @@ use PhpAmqpLib\Connection\AMQPStreamConnection;
 use PhpAmqpLib\Message\AMQPMessage;
 
 if (PHP_VERSION >= "7.2") {
-  require_once __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
+  if (PHP_VERSION >= "8.4") {
+    require_once __DIR__ . '/../Lib/PHP-Parser8/vendor/autoload.php';
+  }
+  else {
+    require_once __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
+  }
 }
 else {
   require_once __DIR__ . '/../Lib/PHP-Parser/vendor/autoload.php';
@@ -46,7 +56,12 @@ class FuzzSlave {
     $this->hinting_infos = array();
     // var_dump($this->hinting_data);
     if (PHP_VERSION >= "7.2") {
-      $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+      if(PHP_VERSION >= "8.4") {
+        $parser = (new ParserFactory())->createForNewestSupportedVersion();
+      }
+      else {
+        $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+      }
     }
     else {
       $this->parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);

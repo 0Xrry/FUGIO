@@ -7,7 +7,12 @@ else {
 }
 
 if (PHP7) {
-	require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
+	if (PHP_VERSION >= "8.4") {
+		require __DIR__ . '/../Lib/PHP-Parser8/vendor/autoload.php';
+	}
+	else {
+		require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
+	}
 }
 else {
 	require __DIR__ . '/../Lib/PHP-Parser/vendor/autoload.php';
@@ -65,7 +70,12 @@ class MyNodeVisitor extends NodeVisitorAbstract
 }
 
 if (PHP7) {
-	$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+	if (PHP_VERSION >= "8.4") {
+		$parser = (new ParserFactory())->createForNewestSupportedVersion();
+	}
+	else {
+		$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP7);
+	}
 }
 else {
 	$parser = (new ParserFactory)->create(ParserFactory::PREFER_PHP5);

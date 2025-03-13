@@ -15,11 +15,7 @@ phpize
 make && make install
 cd ../..
 
-cd Lib/uopz8
-phpize
-./configure
-make && make install
-cd ../..
+apt install -y php8.4-uopz
 
 cd Lib/pcntl84
 phpize
