@@ -67,24 +67,24 @@ ZEND_END_MODULE_GLOBALS(evalhook)
 
 ZEND_DECLARE_MODULE_GLOBALS(evalhook)
 
-static zend_op_array *(*orig_compile_string)(zval *source_string, char *filename TSRMLS_DC);
+static zend_op_array *(*orig_compile_string)(zval *source_string, char *filename);
 static zend_bool evalhook_hooked = 0;
 
-static zend_op_array *evalhook_compile_string(zval *source_string, char *filename TSRMLS_DC)
+static zend_op_array *evalhook_compile_string(zval *source_string, char *filename)
 {
 	int c, len, yes;
 	char *copy;
 
 	/* Ignore non string eval() */
     if (Z_TYPE_P(source_string) != IS_STRING) {
-		return orig_compile_string(source_string, filename TSRMLS_CC);
+		return orig_compile_string(source_string, filename);
 	}
 
 	len  = Z_STRLEN_P(source_string);
 	copy = estrndup(Z_STRVAL_P(source_string), len);
   add_next_index_string(&COUNTER_G(new_array), copy);
 
-	return orig_compile_string(source_string, filename TSRMLS_CC);
+	return orig_compile_string(source_string, filename);
 }
 
 
