@@ -1,5 +1,5 @@
 #!/bin/bash
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt --use-pep517
 
 cd Lib/rabbitmq_php8
 composer install
