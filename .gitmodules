@@ -22,3 +22,6 @@
 [submodule "Lib/upoz8"]
 	path = Lib/upoz8
 	url = https://github.com/krakjoe/uopz.git
+[submodule "Lib/uopz8"]
+	path = Lib/uopz8
+	url = https://github.com/krakjoe/uopz.git
