@@ -1,7 +1,7 @@
 #!/bin/bash
 pip3 install -r requirements.txt --use-pep517
 
-cd Lib/rabbitmq_php8
+cd Lib/rabbitmq_php7
 composer install
 cd ../..
 
@@ -17,7 +17,7 @@ cd ../..
 
 apt install -y php8.2-uopz
 
-cd Lib/pcntl8
+cd Lib/pcntl84
 phpize
 ./configure
 make && make install

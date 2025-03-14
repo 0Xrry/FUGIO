@@ -1,0 +1,12 @@
+-include pcntl.dep
+pcntl.lo: /home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72/pcntl.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) -I. -I/home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -DHAVE_STRUCT_SIGINFO_T -DZEND_COMPILE_DL_EXT=1 -c /home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72/pcntl.c -o pcntl.lo  -MMD -MF pcntl.dep -MT pcntl.lo
+-include php_signal.dep
+php_signal.lo: /home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72/php_signal.c
+	$(LIBTOOL) --tag=CC --mode=compile $(CC) -I. -I/home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72 $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS)  -DHAVE_STRUCT_SIGINFO_T -DZEND_COMPILE_DL_EXT=1 -c /home/rry/Desktop/PHP_POI/src-dev/FUGIO/Lib/pcntl72/php_signal.c -o php_signal.lo  -MMD -MF php_signal.dep -MT php_signal.lo
+$(phplibdir)/pcntl.la: ./pcntl.la
+	$(LIBTOOL) --tag=CC --mode=install cp ./pcntl.la $(phplibdir)
+
+./pcntl.la: $(shared_objects_pcntl) $(PCNTL_SHARED_DEPENDENCIES)
+	$(LIBTOOL) --tag=CC --mode=link $(CC) -shared $(COMMON_FLAGS) $(CFLAGS_CLEAN) $(EXTRA_CFLAGS) $(LDFLAGS)  -o $@ -export-dynamic -avoid-version -prefer-pic -module -rpath $(phplibdir) $(EXTRA_LDFLAGS) $(shared_objects_pcntl) $(PCNTL_SHARED_LIBADD)
+
