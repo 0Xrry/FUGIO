@@ -7,18 +7,18 @@ else {
 }
 
 if (PHP7) {
-  require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
-  require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
-}
-else {
   if (PHP_VERSION >= "8.4") {
     require_once __DIR__ . '/../Lib/rabbitmq_php8/vendor/autoload.php';
     require __DIR__ . '/../Lib/PHP-Parser8/vendor/autoload.php';  
   }
   else {
-    require_once __DIR__ . '/../Lib/rabbitmq_php/vendor/autoload.php';
-    require __DIR__ . '/../Lib/PHP-Parser/vendor/autoload.php';
+    require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
+    require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';  
   }
+}
+else {
+  require_once __DIR__ . '/../Lib/rabbitmq_php/vendor/autoload.php';
+  require __DIR__ . '/../Lib/PHP-Parser/vendor/autoload.php';
 }
 
 error_reporting(E_ALL & ~E_NOTICE);
@@ -116,10 +116,10 @@ class MyNodeVisitor extends NodeVisitorAbstract
       return $this->pretty_printer->prettyPrintExpr($arg);
     }
     else if (is_array($arg)) {
-      return utf8_encode($this->pretty_printer->prettyPrint($arg));
+      return @utf8_encode($this->pretty_printer->prettyPrint($arg));
     }
     else {
-      return utf8_encode($this->pretty_printer->prettyPrint(array($arg)));
+      return @utf8_encode($this->pretty_printer->prettyPrint(array($arg)));
     }
   }
 

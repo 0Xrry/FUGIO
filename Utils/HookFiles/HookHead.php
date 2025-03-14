@@ -1,7 +1,12 @@
 <?php
 error_reporting(E_ALL & ~E_NOTICE);
 if(PHP_VERSION >= "7.2"){
-  require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
+  if (PHP_VERSION >= "8.4") {
+    require_once __DIR__ . '/../Lib/rabbitmq_php8/vendor/autoload.php';
+  }
+  else {
+    require_once __DIR__ . '/../Lib/rabbitmq_php7/vendor/autoload.php';
+  }
 }
 else{
   require_once __DIR__ . '/../Lib/rabbitmq_php/vendor/autoload.php';
@@ -60,7 +65,7 @@ class dummy_class_r353t {
   public function __invoke() {
     $this->pushMethod("__invoke()");
   }
-  public function __set_state() {
+  public static function __set_state($array) {
     $this->pushMethod("__set_state()");
   }
   public function __clone() {

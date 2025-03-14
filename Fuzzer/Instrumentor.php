@@ -1,7 +1,13 @@
 <?php
 if (PHP_VERSION >= "7.2") {
-	require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
-	require("inc/STMTManipulator7.php");
+	if (PHP_VERSION >= "8.4") {
+		require __DIR__ . '/../Lib/PHP-Parser8/vendor/autoload.php';
+		require("inc/STMTManipulator7.php");	
+	}
+	else {
+		require __DIR__ . '/../Lib/PHP-Parser7/vendor/autoload.php';
+		require("inc/STMTManipulator7.php");
+	}
 }
 else {
 	require __DIR__ . '/../Lib/PHP-Parser/vendor/autoload.php';

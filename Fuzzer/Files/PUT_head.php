@@ -3,7 +3,12 @@ if(function_exists('uopz_allow_exit')){
   uopz_allow_exit(true);
 }
 if(PHP_VERSION >= "7.2"){
-    require_once __DIR__ . '/../../../../Lib' .  '/rabbitmq_php7/vendor/autoload.php';
+    if(PHP_VERSION >= "8.4") {
+        require_once __DIR__ . '/../../../../Lib' .  '/rabbitmq_php8/vendor/autoload.php';
+    }
+    else {
+        require_once __DIR__ . '/../../../../Lib' .  '/rabbitmq_php7/vendor/autoload.php';
+    }
 }
 else{
     require_once __DIR__ . '/../../../../Lib' .  '/rabbitmq_php/vendor/autoload.php';
