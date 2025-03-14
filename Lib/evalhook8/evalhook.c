@@ -67,24 +67,21 @@ ZEND_END_MODULE_GLOBALS(evalhook)
 
 ZEND_DECLARE_MODULE_GLOBALS(evalhook)
 
-static zend_op_array *(*orig_compile_string)(zval *source_string, char *filename);
+static zend_op_array *(*orig_compile_string)(zval *source_string, char *filename, zend_compile_position position);
 static zend_bool evalhook_hooked = 0;
 
-static zend_op_array *evalhook_compile_string(zval *source_string, char *filename)
+static zend_op_array *evalhook_compile_string(zval *source_string, char *filename, zend_compile_position position)
 {
 	int c, len, yes;
 	char *copy;
 
-	/* Ignore non string eval() */
-    if (Z_TYPE_P(source_string) != IS_STRING) {
-		return orig_compile_string(source_string, filename);
-	}
+  if(strstr(filename, "eval()'d code")) {
+    len  = ZSTR_LEN((zend_string *)source_string);
+    copy = estrndup(ZSTR_VAL((zend_string *)source_string), len);
+    add_next_index_string(&COUNTER_G(new_array), copy);
+  }
 
-	len  = Z_STRLEN_P(source_string);
-	copy = estrndup(Z_STRVAL_P(source_string), len);
-  add_next_index_string(&COUNTER_G(new_array), copy);
-
-	return orig_compile_string(source_string, filename);
+	return orig_compile_string(source_string, filename, ZEND_COMPILE_POSITION_AFTER_OPEN_TAG);
 }
 
 

@@ -23,6 +23,11 @@ phpize
 make && make install
 cd ../..
 
+pip3 install pika
+pip3 install requests
+pip3 install python-dateutil
+
+
 grep -qF -- "extension=evalhook.so" /etc/php/8.4/apache2/php.ini || echo "extension=evalhook.so" >> /etc/php/8.4/apache2/php.ini
 grep -qF -- "extension=uopz.so" /etc/php/8.4/apache2/php.ini || echo "extension=uopz.so" >> /etc/php/8.4/apache2/php.ini
 grep -qF -- "extension=uopz.so" /etc/php/8.4/cli/php.ini || echo "extension=uopz.so" >> /etc/php/8.4/cli/php.ini
