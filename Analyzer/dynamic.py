@@ -79,6 +79,10 @@ class DynamicAnalyzer:
     def update_info(self, user_classes, user_functions, declared_classes,
                     declared_interfaces, declared_traits, class_alias, target_file_list):
         class_alias_list = {}
+        # print("------------debug---------------")
+        # print(class_alias)
+        # print("------------debug---------------")
+
         for original, alias in class_alias:
             class_alias_list[alias.lower()] = original.lower()
 
@@ -86,6 +90,11 @@ class DynamicAnalyzer:
         target_function = {}
 
         for func_name, func_info in user_functions.items():
+            # print("------------debug---------------")
+            # print(func_name)
+            # print(func_info)
+            # print(target_file_list)
+
             if not re.match(EXCLUDED_FUNCTIONS_REGEX, func_name):
                 func_file = func_info['FILE']
 
