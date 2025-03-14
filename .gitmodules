@@ -15,7 +15,7 @@
 	url = https://github.com/nikic/PHP-Parser
 [submodule "Lib/PHP-Parser7"]
 	path = Lib/PHP-Parser7
-	url = https://github.com/nikic/PHP-Parser
+	url = https://github.com/nikic/PHP-Parser.git
 [submodule "Lib/PHP-Parser8"]
 	path = Lib/PHP-Parser8
 	url = https://github.com/nikic/PHP-Parser.git
