@@ -17,7 +17,7 @@ cd ../..
 
 apt install -y php8.2-uopz
 
-cd Lib/pcntl84
+cd Lib/pcntl82
 phpize
 ./configure
 make && make install
