@@ -5,7 +5,7 @@ cd Lib/rabbitmq_php8
 composer install
 cd ../..
 
-cd Lib/PHP-Parser82
+cd Lib/PHP-Parser7
 composer install
 cd ../..
 
