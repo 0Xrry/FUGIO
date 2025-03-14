@@ -25,3 +25,6 @@
 [submodule "Lib/uopz8"]
 	path = Lib/uopz8
 	url = https://github.com/krakjoe/uopz.git
+[submodule "Lib/PHP-Parser82"]
+	path = Lib/PHP-Parser82
+	url = https://github.com/nikic/PHP-Parser.git
